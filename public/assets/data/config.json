@@ -1,0 +1,19 @@
+{
+  "templateId": "template",
+  "enableCreds": true,
+  "localData": {
+    "name": "Kanban",
+    "viewId": "kanban",
+    "persistence": true,
+    "cookieStorage": false,
+    "reset": false
+  },
+  "template": {
+    "tags": [
+      {
+        "name": "heading",
+        "value": "Kanban"
+      }
+    ]
+  }
+}
