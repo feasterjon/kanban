@@ -12,7 +12,7 @@ header {
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
-footer, div.hr {
+footer, div.hr, #locadata-admin {
   margin-top: 1rem;
   border-top-width: 0.0625em;
   border-top-style: solid;
@@ -70,6 +70,7 @@ div.hr {
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+  white-space: pre-wrap;
 }
 
 .kanban__dropzone {
@@ -85,7 +86,7 @@ div.hr {
 .kanban__add-item {
   width: 100%;
   padding: 1rem;
-  font-size: 16px;
+  font-size: 1rem;
   color: #000000;
   background-color: rgba(0, 0, 0, 0.1);
   border: none;

@@ -12,6 +12,7 @@ import { LocalDataAdmin as LocalData } from './modules/localdata/admin.js';
 class Main {
   constructor() {
     this.data = CONFIG;
+    this.effects = new jmodules.Effects();
     this.events = new jmodules.Events();
     this.interaction = new jmodules.Interaction();
     this.localData = new LocalData(this.data.localData);
@@ -43,6 +44,13 @@ class Main {
         this.localData.destroy();
         this.localData.updateView(); // update view
       });
+      if (typeof this.data.localDataAdminId !== 'undefined') {
+        document.getElementById(this.data.localDataAdminId).style.display = 'none';
+        this.events.click(this.data.templateButtons.manageDataId, () => {
+          this.localData.updateView(); // update view
+          this.effects.toggle(this.data.localDataAdminId);
+        });
+      }
       if (this.data.enableCreds === true) {
         try {
           document.getElementById('description').innerHTML = document.getElementsByName('description')[0].getAttribute('content');

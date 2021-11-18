@@ -4,7 +4,7 @@
     <title>Kanban</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Kanban (Ver. 1.0.0)" />
+    <meta name="description" content="Kanban (Ver. 2.0.0)" />
     <meta name="keywords" content="kanban, agile, scrum, devops" />
     <meta name="author" content="Jonathan Feaster" />
     <!-- Author : Jonathan Feaster, JonFeaster.com -->
@@ -13,19 +13,31 @@
     <script src="assets/js/kanban.min.js" type="module"></script>
   </head>
   <body>
-    <div class="template">
+    <div class="container">
+      <p class="text-center"><strong>Loading&#8230;</strong></p>
+      <noscript><p class="text-center"><strong>JavaScript is required to access this resource.</strong></p></noscript>
+    </div>
+    <div id="template" class="template">
       <div class="container">
-        <header><h1 class="p-1">Kanban</h1></header>
+        <header><h1 class="p-1">{{ heading }}</h1></header>
         <div id="main">
-          <div class="kanban">
-            <!-- <div class="kanban__column">
-              <div class="kanban__column-title">Not Started</div>
-              <div class="kanban__items">
-                <div contenteditable class="kanban__item-input">Wash the dishes</div>
-                <div class="kanban__dropzone"></div>
+          <div class="kanban"></div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <button id="localdata-toggle" class="w-20 btn btn-outline-primary mt-3">Manage Data</button>
+            </div>
+          </div>
+          <div id="localdata-admin">
+            <div class="form-group row">
+              <label for="localdata" class="form-label col-form-label">Local Data</label>
+              <div class="col-sm-10"><textarea id="localdata" name="localdata" class="w-100 form-control"></textarea></div>
+              <div class="col-sm-2">
+                <button id="localdata-copy" class="w-100 btn btn-outline-primary mt-2">Copy</button>
+                <button id="localdata-save" class="w-100 btn btn-outline-primary mt-2">Save</button>
+                <button id="localdata-refresh" class="w-100 btn btn-outline-primary mt-2">Refresh</button>
+                <button id="localdata-reset" class="w-100 btn btn-outline-primary mt-2">Reset</button>
               </div>
-              <button class="kanban__add-item" type="button">+ Add</button>
-            </div> -->
+              </div>
           </div>
         </div>
         <footer><p><span id="description"></span> Copyright &#169; <span id="author"></span></p></footer>

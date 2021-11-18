@@ -1,9 +1,10 @@
 {
   "templateId": "template",
   "enableCreds": true,
+  "localDataAdminId": "localdata-admin",
   "localData": {
     "name": "Kanban",
-    "viewId": "kanban",
+    "viewId": "localdata",
     "persistence": true,
     "cookieStorage": false,
     "reset": false
@@ -15,5 +16,8 @@
         "value": "Kanban"
       }
     ]
+  },
+  "templateButtons": {
+    "manageDataId": "localdata-toggle"
   }
 }
