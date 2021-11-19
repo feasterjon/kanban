@@ -12,7 +12,7 @@ header {
   border-bottom-color: rgba(0, 0, 0, 0.25);
 }
 
-footer, div.hr, #locadata-admin {
+footer, div.hr, #localdata-admin {
   margin-top: 1rem;
   border-top-width: 0.0625em;
   border-top-style: solid;
