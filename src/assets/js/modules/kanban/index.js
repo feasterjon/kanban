@@ -1,3 +1,9 @@
+/*
+Title: Kanban
+Author: Jonathan Feaster, JonFeaster.com
+Date: 2021-11-22
+*/
+
 import Column from "./view/column.js";
 
 export default class Kanban {

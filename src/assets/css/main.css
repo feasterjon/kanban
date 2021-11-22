@@ -37,9 +37,7 @@ div.hr {
 }
 
 .kanban {
-  display: flex;
   padding: 1rem;
-  width: 100%;
   background: #f3f3f3;
   border-radius: 4px;
 }
@@ -49,11 +47,7 @@ div.hr {
 }
 
 .kanban__column {
-  flex: 1;
-}
-
-.kanban__column:not(:last-child) {
-  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .kanban__column-title {
@@ -69,7 +63,6 @@ div.hr {
   background: #ffffff;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
   white-space: pre-wrap;
 }
 

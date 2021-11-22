@@ -88,12 +88,12 @@ export default class KanbanAPI {
 
 function read() {
   
+  let kanbanName = kanbanData.localData.name;
   let localData = new LocalData(kanbanData.localData);
-  
-	const json = localData.read(kanbanData.localData.name);
+	const json = localData.read(kanbanName);
 
 	if (!json) {
-		return [
+    return [
 			{
 				id: 1,
 				items: []
@@ -109,12 +109,17 @@ function read() {
 		];
 	}
 
-	return JSON.parse(json);
+	return JSON.parse(json)[kanbanName];
 }
 
 function save(data) {
   
+  let kanbanName = kanbanData.localData.name;
   let localData = new LocalData(kanbanData.localData);
   
-	localData.store(kanbanData.localData.name, JSON.stringify(data));
+  let output = {};
+  
+  output[kanbanName] = data;
+  
+	localData.store(kanbanData.localData.name, JSON.stringify(output));
 }

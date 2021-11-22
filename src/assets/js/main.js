@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-11-18
+Date: 2021-11-22
 */
 
 import CONFIG from './config.js';

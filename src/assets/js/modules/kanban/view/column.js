@@ -33,7 +33,7 @@ export default class Column {
 		range.selectNode(document.body);
 
 		return range.createContextualFragment(`
-			<div class="kanban__column">
+			<div class="kanban__column col-sm-4">
 				<div class="kanban__column-title"></div>
 				<div class="kanban__column-items"></div>
 				<button class="kanban__add-item" type="button">+ Add</button>
