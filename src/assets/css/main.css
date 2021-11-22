@@ -66,6 +66,10 @@ div.hr {
   white-space: pre-wrap;
 }
 
+.kanban__item-input:hover {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
 .kanban__dropzone {
   height: 1.2rem;
   transition: background 0.15s, height 0.15s;
