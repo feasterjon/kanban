@@ -93,20 +93,15 @@ function read() {
 	const json = localData.read(kanbanName);
 
 	if (!json) {
-    return [
-			{
-				id: 1,
-				items: []
-			},
-			{
-				id: 2,
-				items: []
-			},
-			{
-				id: 3,
-				items: []
-			},
-		];
+    let output = [];
+    let columns = Object.values(kanbanData.swimlanes);
+    for (let column of columns) {
+      output.push({
+        "id": column.id,
+        "items": []
+      });
+    }
+    return output;
 	}
 
 	return JSON.parse(json)[kanbanName];
@@ -114,10 +109,9 @@ function read() {
 
 function save(data) {
   
+  let output = {};
   let kanbanName = kanbanData.localData.name;
   let localData = new LocalData(kanbanData.localData);
-  
-  let output = {};
   
   output[kanbanName] = data;
   

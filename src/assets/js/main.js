@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-11-22
+Date: 2021-11-23
 */
 
 import CONFIG from './config.js';
@@ -27,6 +27,7 @@ class Main {
       template = templateView.compile();
       document.body.innerHTML = template;
       new Kanban(
+        this.data.swimlanes,
         document.querySelector(".kanban")
       );
       this.localData.updateView(); // update view

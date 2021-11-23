@@ -10,12 +10,12 @@ export default class Item {
 		this.elements.input = this.elements.root.querySelector(".kanban__item-input");
 
 		this.elements.root.dataset.id = id;
-		this.elements.input.innerHTML = content;
+		this.elements.input.innerText = content;
 		this.content = content;
 		this.elements.root.appendChild(bottomDropZone);
 
 		const onBlur = () => {
-			const newContent = this.elements.input.innerHTML.trim();
+			const newContent = this.elements.input.innerText.trim();
 
 			if (newContent == this.content) {
 				return;
