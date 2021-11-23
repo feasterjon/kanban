@@ -27,9 +27,17 @@ export default class Item {
 				content: this.content
 			});
 		};
-
-		this.elements.input.addEventListener("blur", onBlur);
+    
+    this.elements.input.classList.add("kanban-collapse");
+		this.elements.input.addEventListener("blur", () => {
+      this.elements.input.classList.add("kanban-collapse");
+      onBlur();
+    });
+    this.elements.root.addEventListener("click", () => {
+      this.elements.input.classList.remove("kanban-collapse");
+    });
 		this.elements.root.addEventListener("dblclick", () => {
+      this.elements.input.classList.remove("kanban-collapse");
 			const check = confirm("Are you sure you want to delete this item?");
 
 			if (check) {
