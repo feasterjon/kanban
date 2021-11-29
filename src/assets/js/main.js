@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-11-23
+Date: 2021-11-29
 */
 
 import CONFIG from './config.js';
@@ -39,19 +39,20 @@ class Main {
         this.interaction.feedback('localdata-save', 'Saving');
       });
       this.events.click('localdata-refresh', () => {
+        location.href = '#' + this.data.localDataAdminId;
         location.reload();
       });
       this.events.click('localdata-reset', () => {
         this.localData.destroy();
         this.localData.updateView(); // update view
       });
-      if (typeof this.data.localDataAdminId !== 'undefined') {
+      if (location.hash !== ('#' + this.data.localDataAdminId)) {
         document.getElementById(this.data.localDataAdminId).style.display = 'none';
-        this.events.click(this.data.templateButtons.manageDataId, () => {
-          this.localData.updateView(); // update view
-          this.effects.toggle(this.data.localDataAdminId);
-        });
       }
+      this.events.click(this.data.templateButtons.manageDataId, () => {
+        this.localData.updateView(); // update view
+        this.effects.toggle(this.data.localDataAdminId);
+      });
       if (this.data.enableCreds === true) {
         try {
           document.getElementById('description').innerHTML = document.getElementsByName('description')[0].getAttribute('content');

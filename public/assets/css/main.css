@@ -58,7 +58,6 @@ div.hr {
 }
 
 .kanban__item-input {
-  min-height: 4.75rem;
   padding: 1rem;
   box-sizing: border-box;
   background: #ffffff;
@@ -68,8 +67,9 @@ div.hr {
 }
 
 .kanban-collapse {
-  max-height: 4.75rem;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .kanban__item-input:hover {
