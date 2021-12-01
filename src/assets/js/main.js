@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-11-29
+Date: 2021-12-01
 */
 
 import CONFIG from './config.js';
@@ -26,8 +26,21 @@ class Main {
       let templateView = new jmodules.Template(this.data.template.tags, template);
       template = templateView.compile();
       document.body.innerHTML = template;
+      const searchParams = new URLSearchParams(location.search);
+      if (searchParams.get('ldadmin') !== 'true') {
+        document.getElementById(this.data.localDataAdminId).style.display = 'none';
+      }
+      if (searchParams.get('action') === 'reset') {
+        const check = confirm('Are you sure you want to reset your data?');
+        if (check) {
+          this.localData.destroy(this.data.localData.name);
+        }
+        else {
+          location.href = '?ldadmin=true';
+        }
+      }
       new Kanban(
-        this.data.swimlanes,
+        this.data,
         document.querySelector(".kanban")
       );
       this.localData.updateView(); // update view
@@ -38,17 +51,6 @@ class Main {
         this.localData.saveView(); // save view
         this.interaction.feedback('localdata-save', 'Saving');
       });
-      this.events.click('localdata-refresh', () => {
-        location.href = '#' + this.data.localDataAdminId;
-        location.reload();
-      });
-      this.events.click('localdata-reset', () => {
-        this.localData.destroy();
-        this.localData.updateView(); // update view
-      });
-      if (location.hash !== ('#' + this.data.localDataAdminId)) {
-        document.getElementById(this.data.localDataAdminId).style.display = 'none';
-      }
       this.events.click(this.data.templateButtons.manageDataId, () => {
         this.localData.updateView(); // update view
         this.effects.toggle(this.data.localDataAdminId);

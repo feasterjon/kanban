@@ -87,33 +87,37 @@ export default class KanbanAPI {
 }
 
 function read() {
-  
+  let output = formatDefaultData(kanbanData.swimlanes);
   let kanbanName = kanbanData.localData.name;
-  let localData = new LocalData(kanbanData.localData);
-	const json = localData.read(kanbanName);
-
-	if (!json) {
-    let output = [];
-    let columns = Object.values(kanbanData.swimlanes);
-    for (let column of columns) {
-      output.push({
-        "id": column.id,
-        "items": []
-      });
-    }
-    return output;
-	}
-
-	return JSON.parse(json)[kanbanName];
+  const localData = new LocalData(kanbanData.localData);
+	let json = localData.read(kanbanName);
+  
+  if (json) {
+    // data is nested for soft validation and for future multiple kanban support
+    output = JSON.parse(json)[kanbanName][kanbanName];
+  }
+  return output;
 }
 
 function save(data) {
-  
   let output = {};
   let kanbanName = kanbanData.localData.name;
-  let localData = new LocalData(kanbanData.localData);
+  const localData = new LocalData(kanbanData.localData);
   
-  output[kanbanName] = data;
-  
+  // data is nested for soft validation and for future multiple kanban support
+  output[kanbanName] = {};
+  output[kanbanName][kanbanName] = data;
 	localData.store(kanbanData.localData.name, JSON.stringify(output));
+}
+
+function formatDefaultData(data) {
+  let output = [];
+  let columns = Object.values(data);
+  for (let column of columns) {
+    output.push({
+      "id": column.id,
+      "items": []
+    });
+  }
+  return output;
 }
