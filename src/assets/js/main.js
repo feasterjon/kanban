@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-01
+Date: 2021-12-02
 */
 
 import CONFIG from './config.js';
@@ -21,7 +21,7 @@ class Main {
   // mount interface
   
   mount() {
-    if (typeof this.data !== 'undefined') {
+    if (this.data) {
       let template = document.getElementById(this.data.templateId).innerHTML;
       let templateView = new jmodules.Template(this.data.template.tags, template);
       template = templateView.compile();
