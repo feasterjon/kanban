@@ -2,10 +2,12 @@
   "templateId": "template",
   "enableCreds": true,
   "localDataAdminId": "localdata-admin",
+  "dataName": "Kanbans",
+  "defaultKanbanName": "Kanban",
   "swimlanes": [
     {
       "id": 1,
-      "title": "To Do" 
+      "title": "To Do"
     },
     {
       "id": 2,
@@ -34,14 +36,6 @@
     "persistence": true,
     "cookieStorage": false,
     "reset": false
-  },
-  "template": {
-    "tags": [
-      {
-        "name": "heading",
-        "value": "Kanban"
-      }
-    ]
   },
   "templateButtons": {
     "manageDataId": "localdata-toggle"

@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-02
+Date: 2021-12-08
 */
 
 import CONFIG from './config.js';
@@ -22,8 +22,14 @@ class Main {
   
   mount() {
     if (this.data) {
+      let tags = [
+        {
+          "name": "heading",
+          "value": this.data.defaultKanbanName
+        }
+      ];
       let template = document.getElementById(this.data.templateId).innerHTML;
-      let templateView = new jmodules.Template(this.data.template.tags, template);
+      let templateView = new jmodules.Template(tags, template);
       template = templateView.compile();
       document.body.innerHTML = template;
       const searchParams = new URLSearchParams(location.search);

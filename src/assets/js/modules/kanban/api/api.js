@@ -88,25 +88,32 @@ export default class KanbanAPI {
 
 function read() {
   let output = formatDefaultData(kanbanData.swimlanes);
-  let kanbanName = kanbanData.localData.name;
+  let dataName = kanbanData.dataName;
+  let kanbanName = kanbanData.defaultKanbanName;
   const localData = new LocalData(kanbanData.localData);
-	let json = localData.read(kanbanName);
+	let json = localData.read(kanbanData.localData.name);
   
   if (json) {
-    // data is nested for soft validation and for future multiple kanban support
-    output = JSON.parse(json)[kanbanName][kanbanName];
+    let content = JSON.parse(json)[dataName][0]["content"];
+    if (content) {
+      output = content;
+    }
   }
   return output;
 }
 
 function save(data) {
   let output = {};
-  let kanbanName = kanbanData.localData.name;
+  let dataName = kanbanData.dataName;
+  let kanbanName = kanbanData.defaultKanbanName;
   const localData = new LocalData(kanbanData.localData);
   
-  // data is nested for soft validation and for future multiple kanban support
-  output[kanbanName] = {};
-  output[kanbanName][kanbanName] = data;
+  output[dataName] = [];
+  output[dataName].push({
+    "id": 1,
+    "name": kanbanName,
+    "content": data
+  });
 	localData.store(kanbanData.localData.name, JSON.stringify(output));
 }
 

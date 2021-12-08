@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-01
+Date: 2021-12-08
 */
 
 import Column from './view/column.js';
@@ -14,7 +14,7 @@ export default class Kanban {
 		this.root = root;
     this.localData = new LocalData(this.data.localData);
     
-    const kanbanData = this.localData.readField(this.data.localData.name);
+    const kanbanData = this.localData.readField(this.data.dataName);
     if (!kanbanData) {
       this.localData.destroy(this.data.localData.name);
     }
