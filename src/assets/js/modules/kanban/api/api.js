@@ -89,7 +89,6 @@ export default class KanbanAPI {
 function read() {
   let output = formatDefaultData(kanbanData.swimlanes);
   let dataName = kanbanData.dataName;
-  let kanbanName = kanbanData.defaultKanbanName;
   const localData = new LocalData(kanbanData.localData);
 	let json = localData.read(kanbanData.localData.name);
   
@@ -105,8 +104,12 @@ function read() {
 function save(data) {
   let output = {};
   let dataName = kanbanData.dataName;
-  let kanbanName = kanbanData.defaultKanbanName;
+  let kanbanName = document.getElementById(kanbanData.headingId).textContent;
   const localData = new LocalData(kanbanData.localData);
+  
+  if (!kanbanName) {
+    kanbanName = kanbanData.defaultKanbanName;
+  }
   
   output[dataName] = [];
   output[dataName].push({

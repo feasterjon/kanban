@@ -1,6 +1,7 @@
 {
   "templateId": "template",
   "enableCreds": true,
+  "headingId": "heading-main",
   "localDataAdminId": "localdata-admin",
   "dataName": "Kanbans",
   "defaultKanbanName": "Kanban",

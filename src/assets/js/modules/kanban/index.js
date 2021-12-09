@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-08
+Date: 2021-12-09
 */
 
 import Column from './view/column.js';
@@ -13,11 +13,6 @@ export default class Kanban {
     this.swimlanes = data.swimlanes;
 		this.root = root;
     this.localData = new LocalData(this.data.localData);
-    
-    const kanbanData = this.localData.readField(this.data.dataName);
-    if (!kanbanData) {
-      this.localData.destroy(this.data.localData.name);
-    }
     
     let columns = Object.values(this.swimlanes);
     for (let column of columns) {

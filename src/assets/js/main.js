@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-08
+Date: 2021-12-09
 */
 
 import CONFIG from './config.js';
@@ -22,10 +22,22 @@ class Main {
   
   mount() {
     if (this.data) {
+      const kanbanData = this.localData.readField(this.data.dataName);
+      if (!kanbanData) {
+        this.localData.destroy(this.data.localData.name);
+      }
+      let heading = this.data.defaultKanbanName;
+      let json = this.localData.read(this.data.localData.name);
+      if (json) {
+        let name = JSON.parse(json)[this.data.dataName][0]['name'];
+        if (name) {
+          heading = name;
+        }
+      }
       let tags = [
         {
           "name": "heading",
-          "value": this.data.defaultKanbanName
+          "value": heading
         }
       ];
       let template = document.getElementById(this.data.templateId).innerHTML;
@@ -50,6 +62,28 @@ class Main {
         document.querySelector(".kanban")
       );
       this.localData.updateView(); // update view
+      this.events.blur(this.data.headingId, () => {
+        let output = {};
+        let kanbanName = document.getElementById(this.data.headingId).textContent;
+        if (!kanbanName) {
+          kanbanName = this.data.defaultKanbanName;
+        }
+        let json = this.localData.read(this.data.localData.name);
+        if (json) {
+          json = JSON.parse(json);
+          json[this.data.dataName][0]['name'] = kanbanName;
+          output = json;
+        }
+        else {
+          output[this.data.dataName] = [];
+          output[this.data.dataName].push({
+            "id": 1,
+            "name": kanbanName
+          });
+        }
+        this.localData.store(this.data.localData.name, JSON.stringify(output));
+        this.localData.updateView(); // update view
+      });
       this.events.click('localdata-copy', () => {
         this.interaction.copyClip(this.data.localData.viewId, 'localdata-copy', 'Copied');
       });
