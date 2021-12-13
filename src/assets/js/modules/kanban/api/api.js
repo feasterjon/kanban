@@ -115,6 +115,7 @@ function save(data) {
   output[dataName].push({
     "id": 1,
     "name": kanbanName,
+    "update": Date.now().toString(),
     "content": data
   });
 	localData.store(kanbanData.localData.name, JSON.stringify(output));

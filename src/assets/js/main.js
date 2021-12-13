@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-09
+Date: 2021-12-13
 */
 
 import CONFIG from './config.js';
@@ -72,13 +72,15 @@ class Main {
         if (json) {
           json = JSON.parse(json);
           json[this.data.dataName][0]['name'] = kanbanName;
+          json[this.data.dataName][0]['update'] = Date.now().toString();
           output = json;
         }
         else {
           output[this.data.dataName] = [];
           output[this.data.dataName].push({
             "id": 1,
-            "name": kanbanName
+            "name": kanbanName,
+            "update": Date.now().toString()
           });
         }
         this.localData.store(this.data.localData.name, JSON.stringify(output));
