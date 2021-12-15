@@ -3,7 +3,7 @@
   "enableCreds": true,
   "headingId": "heading-main",
   "localDataAdminId": "localdata-admin",
-  "dataName": "Kanbans",
+  "dataName": "kanban",
   "defaultKanbanName": "Kanban",
   "swimlanes": [
     {
@@ -32,7 +32,7 @@
     }
   ],
   "localData": {
-    "name": "Kanban",
+    "name": "kanban",
     "viewId": "localdata",
     "persistence": true,
     "cookieStorage": false,

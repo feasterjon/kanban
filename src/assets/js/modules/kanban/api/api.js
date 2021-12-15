@@ -104,16 +104,21 @@ function read() {
 function save(data) {
   let output = {};
   let dataName = kanbanData.dataName;
+  let kanbanId = Math.floor(Math.random() * 100000);
   let kanbanName = document.getElementById(kanbanData.headingId).textContent;
   const localData = new LocalData(kanbanData.localData);
+  let json = localData.read(kanbanData.localData.name);
   
+  if (json) {
+    kanbanId = JSON.parse(json)[dataName][0]["id"];
+  }
   if (!kanbanName) {
     kanbanName = kanbanData.defaultKanbanName;
   }
   
   output[dataName] = [];
   output[dataName].push({
-    "id": 1,
+    "id": kanbanId,
     "name": kanbanName,
     "update": Date.now().toString(),
     "content": data

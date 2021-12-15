@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-13
+Date: 2021-12-15
 */
 
 import CONFIG from './config.js';
@@ -78,7 +78,7 @@ class Main {
         else {
           output[this.data.dataName] = [];
           output[this.data.dataName].push({
-            "id": 1,
+            "id": Math.floor(Math.random() * 100000),
             "name": kanbanName,
             "update": Date.now().toString()
           });
