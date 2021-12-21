@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-15
+Date: 2021-12-21
 */
 
 import CONFIG from './config.js';
@@ -52,9 +52,10 @@ class Main {
         const check = confirm('Are you sure you want to reset your data?');
         if (check) {
           this.localData.destroy(this.data.localData.name);
+          location.href = './';
         }
         else {
-          location.href = '?ldadmin=true';
+          location.href = './';
         }
       }
       new Kanban(
