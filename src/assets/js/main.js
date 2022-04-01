@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-21
+Date: 2022-04-01
 */
 
 import CONFIG from './config.js';
@@ -11,16 +11,11 @@ import { LocalDataAdmin as LocalData } from './modules/localdata/admin.js';
 
 class Main {
   constructor() {
-    this.data = CONFIG;
+    this.data = CONFIG.data[0].attributes;
     this.effects = new jmodules.Effects();
     this.events = new jmodules.Events();
     this.interaction = new jmodules.Interaction();
     this.localData = new LocalData(this.data.localData);
-  }
-  
-  // mount interface
-  
-  mount() {
     if (this.data) {
       const kanbanData = this.localData.readField(this.data.dataName);
       if (!kanbanData) {
@@ -111,4 +106,3 @@ class Main {
 }
 
 const main = new Main();
-main.mount();

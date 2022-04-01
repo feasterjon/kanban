@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2021-12-15
+Date: 2022-04-01
 */
 
 import Column from './view/column.js';
