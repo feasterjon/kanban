@@ -87,14 +87,13 @@ export default class KanbanAPI {
 }
 
 function read() {
-  let output = formatDefaultData(kanbanData.swimlanes);
-  let dataName = kanbanData.dataName;
+	let output = formatDefaultData(kanbanData.swimlanes);
   const localData = new LocalData(kanbanData.localData);
 	let json = localData.read(kanbanData.localData.name);
-  
-  if (json) {
-    let content = JSON.parse(json)[dataName][0]["content"];
-    if (content) {
+	
+	if (json) {
+		let content = JSON.parse(json).data[0].attributes.content;
+		if (content) {
       output = content;
     }
   }
@@ -104,25 +103,30 @@ function read() {
 function save(data) {
   let output = {};
   let dataName = kanbanData.dataName;
-  let kanbanId = Math.floor(Math.random() * 100000);
+  let kanbanId = Math.floor(Math.random() * 100000).toString();
   let kanbanName = document.getElementById(kanbanData.headingId).textContent;
   const localData = new LocalData(kanbanData.localData);
   let json = localData.read(kanbanData.localData.name);
   
   if (json) {
-    kanbanId = JSON.parse(json)[dataName][0]["id"];
+    kanbanId = JSON.parse(json).data[0].id;
   }
   if (!kanbanName) {
     kanbanName = kanbanData.defaultKanbanName;
   }
   
-  output[dataName] = [];
-  output[dataName].push({
-    "id": kanbanId,
-    "name": kanbanName,
-    "update": Date.now().toString(),
-    "content": data
-  });
+	output.data = [];
+	output.data[0] = {
+		"type": dataName,
+		"id": kanbanId,
+		"meta": {
+			"name": kanbanName,
+			"update": Date.now().toString()
+		},
+		"attributes": {
+			"content": data
+		}
+	};
 	localData.store(kanbanData.localData.name, JSON.stringify(output));
 }
 

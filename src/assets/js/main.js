@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2022-04-01
+Date: 2022-04-04
 */
 
 import CONFIG from './config.js';
@@ -17,14 +17,14 @@ class Main {
     this.interaction = new jmodules.Interaction();
     this.localData = new LocalData(this.data.localData);
     if (this.data) {
-      const kanbanData = this.localData.readField(this.data.dataName);
-      if (!kanbanData) {
+      const kanbanData = this.localData.readField("data");
+      if (!kanbanData || kanbanData[0].type !== this.data.dataName) {
         this.localData.destroy(this.data.localData.name);
       }
       let heading = this.data.defaultKanbanName;
       let json = this.localData.read(this.data.localData.name);
       if (json) {
-        let name = JSON.parse(json)[this.data.dataName][0]['name'];
+        let name = JSON.parse(json).data[0].meta.name;
         if (name) {
           heading = name;
         }
@@ -67,17 +67,21 @@ class Main {
         let json = this.localData.read(this.data.localData.name);
         if (json) {
           json = JSON.parse(json);
-          json[this.data.dataName][0]['name'] = kanbanName;
-          json[this.data.dataName][0]['update'] = Date.now().toString();
+          json.data[0].meta.name = kanbanName;
+          json.data[0].meta.update = Date.now().toString();
           output = json;
         }
         else {
-          output[this.data.dataName] = [];
-          output[this.data.dataName].push({
-            "id": Math.floor(Math.random() * 100000),
-            "name": kanbanName,
-            "update": Date.now().toString()
-          });
+          output.data = [];
+          output.data[0] = {
+            "type": this.data.dataName,
+            "id": Math.floor(Math.random() * 100000).toString(),
+            "meta": {
+              "name": kanbanName,
+              "update": Date.now().toString()
+            },
+            "attributes": {}
+          };
         }
         this.localData.store(this.data.localData.name, JSON.stringify(output));
         this.localData.updateView(); // update view
