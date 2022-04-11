@@ -1,4 +1,3 @@
-const CONFIG = fetch('assets/api/config.json')
-.then(response => response.json());
+const CONFIG = 'assets/api/config.json';
 
-export default await CONFIG;
+export default CONFIG;

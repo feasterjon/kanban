@@ -1,17 +1,16 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2022-04-06
+Date: 2022-04-11
 */
 
-import CONFIG from './config.js';
 import * as jmodules from './modules/jmodules/index.js';
-import Kanban from "./modules/kanban/index.js";
+import { Kanban } from './modules/kanban/index.js';
 import { LocalDataAdmin as LocalData } from './modules/localdata/admin.js';
 
-class Main {
+export class Main {
   constructor(data) {
-    this.data = data;
+    this.data = data.data[0].attributes;
     this.effects = new jmodules.Effects();
     this.events = new jmodules.Events();
     this.interaction = new jmodules.Interaction();
@@ -111,6 +110,3 @@ class Main {
     }
   }
 }
-
-const main = new Main(CONFIG.data[0].attributes);
-main.render();

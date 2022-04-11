@@ -1,7 +1,7 @@
-import CONFIG from '../../../config.js';
+import API_CONFIG from '../api_config.js';
 import { LocalData } from '../../localdata/index.js';
 
-const kanbanData = CONFIG.data[0].attributes;
+const kanbanData = API_CONFIG.data[0].attributes;
 
 export default class KanbanAPI {
 	static getItems(columnId) {

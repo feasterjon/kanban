@@ -7,7 +7,7 @@ Date: 2022-04-06
 import Column from './view/column.js';
 import { LocalData } from '../localdata/index.js';
 
-export default class Kanban {
+export class Kanban {
 	constructor(data, root) {
     this.data = data;
     this.swimlanes = data.swimlanes;
