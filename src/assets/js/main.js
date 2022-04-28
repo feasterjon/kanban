@@ -1,7 +1,7 @@
 /*
 Title: Kanban
 Author: Jonathan Feaster, JonFeaster.com
-Date: 2022-04-11
+Date: 2022-04-28
 */
 
 import * as jmodules from './modules/jmodules/index.js';
@@ -14,6 +14,7 @@ export class Main {
     this.effects = new jmodules.Effects();
     this.events = new jmodules.Events();
     this.interaction = new jmodules.Interaction();
+    this.url = new jmodules.URL();
     this.localData = new LocalData(this.data.localData);
   }
   render() {
@@ -40,11 +41,10 @@ export class Main {
       let templateView = new jmodules.Template(tags, template);
       template = templateView.compile();
       document.body.innerHTML = template;
-      const searchParams = new URLSearchParams(location.search);
-      if (searchParams.get('ldadmin') !== 'true') {
+      if (this.url.getQuerystring('ldadmin') !== 'true') {
         document.getElementById(this.data.localDataAdminId).style.display = 'none';
       }
-      if (searchParams.get('action') === 'reset') {
+      if (this.url.getQuerystring('action') === 'reset') {
         const check = confirm('Are you sure you want to reset your data?');
         if (check) {
           this.localData.destroy(this.data.localData.name);
