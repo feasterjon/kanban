@@ -4,10 +4,12 @@
     <title>Kanban</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Kanban (Ver. 5.1.0)" />
+    <meta name="description" content="Kanban (Ver. 6.0.0)" />
     <meta name="keywords" content="kanban, agile, scrum, devops" />
     <meta name="author" content="Jonathan Feaster" />
+    <meta name="theme-color" content="#262626" />
     <!-- Author : Jonathan Feaster, JonFeaster.com -->
+    <link rel="manifest" href="manifest.json" type="application/manifest+json" />
     <link rel="stylesheet" href="assets/lib/flatly/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
     <script src="assets/js/index.js" type="module"></script>
@@ -43,5 +45,23 @@
         <footer><p><span id="description"></span> Copyright &#169; <span id="author"></span></p></footer>
       </div>
     </div>
+    <script>
+      window.addEventListener('load', () => {
+        registerSW();
+      });
+
+      async function registerSW() {
+        if ('serviceWorker' in navigator) {
+          try {
+            await navigator
+              .serviceWorker
+              .register('serviceworker.js');
+          }
+          catch (e) {
+            console.log('SW registration failed');
+          }
+        }
+      }
+    </script>
   </body>
 </html>
